@@ -1,4 +1,4 @@
-const CtaSection = () => {
+const CtaSection = ({openSignUp}) => {
  return (
         <div className="bg-purple-500">
             <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
@@ -9,7 +9,7 @@ const CtaSection = () => {
                 <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
                     <div className="inline-flex rounded-md shadow">
                         <button
-                            
+                            onClick={()=>openSignUp()}
                             className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-purple-600 bg-white hover:bg-purple-50 transition-colors duration-200">
                             Sign up for free
                         </button>

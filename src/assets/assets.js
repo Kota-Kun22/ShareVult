@@ -1,4 +1,4 @@
-import dashboard from '../images/dashboard.png';
+import dashboard from "./Dashboard.png";
 
 export const assets = {
     dashboard,
