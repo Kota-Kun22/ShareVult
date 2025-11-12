@@ -6,10 +6,12 @@ import Subcription from "./pages/Subcription";
 import Transactions from "./pages/Transactions";
 import Uploads from "./pages/Uploads";
 import { RedirectToSignIn, SignedIn, SignedOut, SignIn } from "@clerk/clerk-react";
+import { Toaster } from "react-hot-toast";
 
 const App=()=>{
   return (
    <BrowserRouter>
+     <Toaster/>
       <Routes>
 
         <Route path="/" element={<Landing/>} />
