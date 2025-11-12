@@ -7,9 +7,11 @@ import Transactions from "./pages/Transactions";
 import Uploads from "./pages/Uploads";
 import { RedirectToSignIn, SignedIn, SignedOut, SignIn } from "@clerk/clerk-react";
 import { Toaster } from "react-hot-toast";
+import { UserCreditsProvider } from "./context/UserCreditsContext";
 
 const App=()=>{
   return (
+    <UserCreditsProvider>
    <BrowserRouter>
      <Toaster/>
       <Routes>
@@ -55,6 +57,7 @@ const App=()=>{
 
       </Routes>
    </BrowserRouter>
+   </UserCreditsProvider>
   );
 }
 
