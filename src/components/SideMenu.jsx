@@ -4,6 +4,8 @@ import {SIDE_MENU_DATA} from "../assets/data.js";
 import {useNavigate} from "react-router-dom";
 
 const SideMenu = ({activeMenu}) => {
+     console.log("🔧 SideMenu - activeMenu:", activeMenu);
+  console.log("🔧 SIDE_MENU_DATA labels:", SIDE_MENU_DATA.map(item => item.label));
     const {user} = useUser();
     const navigate = useNavigate();
     return (

@@ -2,12 +2,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import MyFiles from "./pages/MyFiles";
-import Subcription from "./pages/Subcription";
+
 import Transactions from "./pages/Transactions";
 import Uploads from "./pages/Uploads";
 import { RedirectToSignIn, SignedIn, SignedOut, SignIn } from "@clerk/clerk-react";
 import { Toaster } from "react-hot-toast";
 import { UserCreditsProvider } from "./context/UserCreditsContext";
+import Subscription from "./pages/Subscription";
 
 const App=()=>{
   return (
@@ -39,9 +40,9 @@ const App=()=>{
             </>
         } />
 
-        <Route path="/subcription" element={
+        <Route path="/subscriptions" element={
            <>
-              <SignedIn><Subcription/></SignedIn>
+              <SignedIn><Subscription/></SignedIn>
               <SignedOut><RedirectToSignIn/> </SignedOut>
             </>
         } />

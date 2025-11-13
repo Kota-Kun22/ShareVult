@@ -29,7 +29,7 @@ const FeaturesSection = ({features}) => {
                         Everything you need for the file sharing
                     </h2>
                     <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-                        CloudShare provides all the tools you need to manage your digital content
+                        Share Vault provides all the tools you need to manage your digital content
                     </p>
                 </div>
                 <div className="mt-16">

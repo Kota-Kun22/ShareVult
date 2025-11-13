@@ -10,7 +10,7 @@ const TestimonialSection = ({testimonials}) => {
                               Trusted by Professionals Worldwide
                           </h2>
                           <p className="mt-4 max-w-3xl mx-auto text-xl text-gray-500">
-                              See what our users have to say about CloudShare
+                              See what our users have to say about ShareVault
                           </p>
                       </div>
                       <div className="mt-16 grid gap-8 lg:grid-cols-3">
