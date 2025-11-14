@@ -10,4 +10,6 @@ export const apiEndpoints = {
     CREATE_ORDER:`${BASE_URL}/payments/create-order`,
     VERIFY_PAYMENT:`${BASE_URL}/payments/verify-payment`,
     GET_CREDITS: `${BASE_URL}/users/credits`,
+    TRANSACTIONS: `${BASE_URL}/transactions`,
+     PUBLIC_FILE_VIEW: (fileId) => `${BASE_URL}/files/public/${fileId}`,
 }
