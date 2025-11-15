@@ -102,7 +102,7 @@ export const testimonials = [
         rating: 5
     },
     {
-        name: "Priya Sharma",
+        name: "Lilly Austin",
         role: "Project Manager",
         company: "TechSolutions Ltd.",
         image: "https://randomuser.me/api/portraits/women/65.jpg",
