@@ -52,26 +52,47 @@ const MyFiles=()=>{
       
     }
   }
-  //handlde file download
-  const handleFileDownload = async(file)=>{
-    try {
-      const token = await getToken();
-      const response = await axios.get(apiEndpoints.DOWNLOAD_FILE(file.id),{headers:{Authorization:`Bearer ${token}`},responseType:'blob'} );
-      //create a blob url and trigger download
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download',file.fileName);
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      window.URL.revokeObjectURL(url);//clean up the objects 
-    } catch (error) {
-      console.log("Error downloading file:",error);
-      toast.error('Failed to download file. Please try again later.',error.message);
+  // //handlde file download
+  // const handleFileDownload = async(file)=>{
+  //   try {
+  //     const token = await getToken();
+  //     const response = await axios.get(apiEndpoints.DOWNLOAD_FILE(file.id),{headers:{Authorization:`Bearer ${token}`},responseType:'blob'} );
+  //     //create a blob url and trigger download
+  //     const url = window.URL.createObjectURL(new Blob([response.data]));
+  //     const link = document.createElement('a');
+  //     link.href = url;
+  //     link.setAttribute('download',file.fileName);
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     link.remove();
+  //     window.URL.revokeObjectURL(url);//clean up the objects 
+  //   } catch (error) {
+  //     console.log("Error downloading file:",error);
+  //     toast.error('Failed to download file. Please try again later.',error.message);
       
+  //   }
+  // }
+  // Handle file download - NOW RETURNS PRESIGNED URL
+const handleFileDownload = async(file) => {
+    try {
+        const token = await getToken();
+        // Get presigned URL from backend (NO responseType: 'blob')
+        const response = await axios.get(apiEndpoints.DOWNLOAD_FILE(file.id), {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        
+        // Backend returns presigned URL as string
+        const presignedUrl = response.data;
+        
+        // Open the presigned URL in new tab for download
+        window.open(presignedUrl, '_blank');
+        
+        toast.success('Download started!');
+    } catch (error) {
+        console.log("Error downloading file:", error);
+        toast.error('Failed to download file. Please try again later.');
     }
-  }
+}
   //Closes the delete confirmation dialog
   const closeDeleteConfirmation = () => {
     setDeleteConfirmation({ isOpen: false, fileId: null });

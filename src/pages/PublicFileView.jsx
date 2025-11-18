@@ -40,29 +40,49 @@ const PublicFileView = () => {
         getFile();
     }, [fileId, getToken]);
 
-    const handleDownload = async () => {
-        try {
-            // This endpoint might also require a token depending on your backend setup
-            const response = await axios.get(
-                apiEndpoints.DOWNLOAD_FILE(fileId),
-                {
-                    responseType: "blob",
-                }
-            );
+    // const handleDownload = async () => {
+    //     try {
+    //         // This endpoint might also require a token depending on your backend setup
+    //         const response = await axios.get(
+    //             apiEndpoints.DOWNLOAD_FILE(fileId),
+    //             {
+    //                 responseType: "blob",
+    //             }
+    //         );
 
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement("a");
-            link.href = url;
-            link.setAttribute("download", file.fileName); // Use the actual file name
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-            window.URL.revokeObjectURL(url); // Clean up the object URL
-        } catch (err) {
-            console.error("Download failed:", err);
-            toast.error("Sorry, the file could not be downloaded.");
-        }
-    };
+    //         const url = window.URL.createObjectURL(new Blob([response.data]));
+    //         const link = document.createElement("a");
+    //         link.href = url;
+    //         link.setAttribute("download", file.fileName); // Use the actual file name
+    //         document.body.appendChild(link);
+    //         link.click();
+    //         link.remove();
+    //         window.URL.revokeObjectURL(url); // Clean up the object URL
+    //     } catch (err) {
+    //         console.error("Download failed:", err);
+    //         toast.error("Sorry, the file could not be downloaded.");
+    //     }
+    // };
+    
+const handleDownload = async () => {
+    try {
+        // Get presigned URL for public file (NO responseType: 'blob')
+        const response = await axios.get(
+            apiEndpoints.DOWNLOAD_FILE(fileId)
+        );
+
+        // Backend returns presigned URL as string
+        const presignedUrl = response.data;
+        
+        // Open the presigned URL in new tab
+        window.open(presignedUrl, '_blank');
+        
+        toast.success('Download started!');
+    } catch (err) {
+        console.error("Download failed:", err);
+        toast.error('Sorry, the file could not be downloaded.');
+    }
+};
 
     const openShareModal = () => {
         setShareModal({
